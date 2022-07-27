@@ -45,7 +45,7 @@ const getInfobyZip = async (zip) => {
   const res = await fetch(baseURL + zip + APIKey);
   try {
     const data = await res.json();
-    console.log("getInfobyZip function",data);
+    // console.log("getInfobyZip function",data);
     return data;
   } catch (err) {
     console.log(err);
@@ -63,7 +63,7 @@ const postData = async (url = "", data = {}) => {
   });
   try {
     const newData = await response.json();
-    console.  log("new data is " ,newData);
+    // console.  log("new data is " ,newData);
     return newData;
   } catch (err) {
     console.log("Something wrong Happen", err);
@@ -74,7 +74,7 @@ const updatingDom = async () => {
   const response = await fetch(`${server}/all`);
   try {
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
     city.textContent = data.city;
     date.textContent = data.date;
     temp.textContent = data.temp;
