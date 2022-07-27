@@ -9,7 +9,5 @@ This project requires you to create an asynchronous web app that uses Web API an
 - I used the following technologies:
   - [Node.js](https://nodejs.org/)
   - [Express](https://expressjs.com/)
-  - [body-parser](https://www.npmjs.com/package/body-parser)
-  - [cors](https://www.npmjs.com/package/cors)
 - I created a server that listens on port 3000 and get and post requests
 - most of the functions in my project are arrow functions and I added some coments to make it easier to read
