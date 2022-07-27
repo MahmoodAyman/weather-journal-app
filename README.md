@@ -2,7 +2,8 @@
 
 ## Overview
 
-This project requires you to create an asynchronous web app that uses Web API and user data to dynamically update the UI.
+This project is the second project of egFWD web development proffessional track.
+weather-journal-app is a web application that allows users to know the weather by zip code using open weather map API.
 
 - first I setup node.js and npm to install the dependencies
 - I created an asynchronous web app that uses Web API and user data to dynamically update the UI.
