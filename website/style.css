@@ -37,7 +37,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  height: 150px;
+  height: 200px;
   width: 400px;
   transform: scale(0);
   transition: 0.3s all ease-in-out;
@@ -45,8 +45,10 @@ body {
 
 #entryHolder {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   flex-wrap: wrap;
+  align-items: center;
 }
 #city_name {
   font-size: 30px;

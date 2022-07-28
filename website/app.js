@@ -1,13 +1,15 @@
 /* Global Variables */
 
-// Create a new date instance dynamically with JS
-let d = new Date;
-let newDate = `${d.getMonth()} . ${d.getDate()} . ${d.getFullYear()}`;
-
-// API URL and Key
+// API URL
 const baseURL = "https://api.openweathermap.org/data/2.5/weather?zip=";
-const APIKey = "&appid=bd10c15bae56c76cfc25506afc983f0e";
+
+//personal API key
+const APIKey = "&appid=bd10c15bae56c76cfc25506afc983f0e&units=imperial/Fahrenheit";
+
 const server = "http://localhost:3000";
+// Create a new date instance dynamically with JS
+let d = new Date();
+let newDate = `${d.getMonth() + 1} . ${d.getDate()} . ${d.getFullYear()}`;
 
 // dom elements
 const zip = document.getElementById("zip");
@@ -16,15 +18,15 @@ const submit = document.getElementById("generate");
 const date = document.getElementById("date");
 const temp = document.getElementById("temp");
 const content = document.getElementById("content");
-const city = document.getElementById("city_name");
 
 // generate button event listener
 submit.addEventListener("click", function (evt) {
   evt.preventDefault();
   const zipCode = zip.value;
-  if (zipCode.lngth < 5||isNaN(zipCode)) { // to validate zip code
+  if (zipCode.lngth < 5 || isNaN(zipCode)) {
+    // to validate zip code
     alert("Please enter a valid zip code");
-  } 
+  }
   getInfobyZip(zipCode).then((apiInfo) => {
     if (apiInfo.cod != "404") {
       let recivedData = {
@@ -33,6 +35,7 @@ submit.addEventListener("click", function (evt) {
         temp: Math.round(parseFloat(apiInfo.main.temp) - 273.15),
         content: feeling.value,
       };
+      recivedData.city = apiInfo.name;
       postData(`${server}/addnew`, recivedData);
       updatingDom();
     } else {
@@ -45,7 +48,7 @@ const getInfobyZip = async (zip) => {
   const res = await fetch(baseURL + zip + APIKey);
   try {
     const data = await res.json();
-    // console.log("getInfobyZip function",data);
+    console.log("getInfobyZip function",data);
     return data;
   } catch (err) {
     console.log(err);
@@ -63,7 +66,6 @@ const postData = async (url = "", data = {}) => {
   });
   try {
     const newData = await response.json();
-    // console.  log("new data is " ,newData);
     return newData;
   } catch (err) {
     console.log("Something wrong Happen", err);
@@ -74,11 +76,10 @@ const updatingDom = async () => {
   const response = await fetch(`${server}/all`);
   try {
     const data = await response.json();
-    // console.log(data);
-    city.textContent = data.city;
-    date.textContent = data.date;
-    temp.textContent = data.temp;
-    content.textContent = `you are ${feeling.value}`;
+    console.log(data);
+    date.innerHTML = data.date;
+    temp.innerHTML = data.temp+ ' degrees';
+    content.innerHTML = `you are ${feeling.value}`;
   } catch (err) {
     console.log("something wrong happen", err);
   }
